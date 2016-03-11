@@ -18,7 +18,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain.Tests", "src\Tests\XG
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{403DA7D9-4722-48DF-B259-D4FA128A483D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SampleApp", "SampleApp\SampleApp.xproj", "{374CEB01-7F21-4BBE-8E25-D87077FA9901}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SampleApp", "Sample\SampleApp\SampleApp.xproj", "{374CEB01-7F21-4BBE-8E25-D87077FA9901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
