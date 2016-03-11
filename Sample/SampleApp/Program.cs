@@ -16,11 +16,10 @@ namespace SampleApp
             try
             {
                 TcpClient client = new TcpClient();
-                client.Connect(new IPEndPoint(IPAddress.Parse(host), port));
+                client.ConnectAsync(IPAddress.Parse(host), port).Wait();
                 NetworkStream stream = client.GetStream();
                 stream.Write(package, 0, package.Length);
                 stream.Flush();
-                client.Close();
             }
             catch (Exception ex)
             {
