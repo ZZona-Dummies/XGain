@@ -1,4 +1,4 @@
-﻿{
+{
     "authors": [ "Lukasz Pyrzyk" ],
     "commands": {
         "test": "xunit.runner.dnx"
