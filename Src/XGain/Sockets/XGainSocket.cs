@@ -60,19 +60,9 @@ namespace XGain.Sockets
             return _socket.Receive(buffer);
         }
 
-        public Task<int> ReceiveAsync(byte[] packageSizeBuffer)
-        {
-            return Task.Factory.StartNew(() => Receive(packageSizeBuffer));
-        }
-
         public int Send(byte[] buffer)
         {
             return _socket.Send(buffer);
-        }
-
-        public Task SendAsync(byte[] statusBuffer)
-        {
-            return Task.Factory.StartNew(() => Send(statusBuffer));
         }
 
         public void Shutdown(SocketShutdown how)
