@@ -18,9 +18,7 @@ namespace XGain.Sockets
         void Connect(IPEndPoint remoteEndPoint);
         void Listen(int backlog);
         int Receive(byte[] buffer);
-        Task<int> ReceiveAsync(byte[] packageSizeBuffer);
         int Send(byte[] buffer);
-        Task SendAsync(byte[] statusBuffer);
         void Shutdown(SocketShutdown how);
     }
 }
