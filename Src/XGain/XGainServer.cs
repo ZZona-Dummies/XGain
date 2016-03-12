@@ -45,7 +45,8 @@ namespace XGain
             Message args = new Message();
 
             IProcessor processor = _requestProcessorResolver();
-            processor.ProcessSocketConnection(socket, args);
+            Task processing = processor.ProcessSocketConnection(socket, args);
+            processing.Wait();
 
             var handler = OnNewMessage;
             handler?.Invoke(socket, args);
