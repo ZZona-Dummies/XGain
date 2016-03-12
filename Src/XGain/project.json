@@ -4,10 +4,16 @@
         "XGain": "XGain"
     },
     "dependencies": {
+        "protobuf-net": "2.1.0-alpha-1"
     },
     "description": "XGain",
     "frameworks": {
-        "dnx451": { },
+        "dnx451": {
+            "frameworkAssemblies": {
+                "System": "4.0.0.0",
+                "System.Net": "4.0.0.0"
+            }
+        },
         "dnxcore50": {
             "dependencies": {
                 "Microsoft.CSharp": "4.0.1-beta-23516",

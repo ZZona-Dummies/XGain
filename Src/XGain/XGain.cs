@@ -3,17 +3,20 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using XGain.Processing;
+using XGain.Sockets;
 
 namespace XGain
 {
     public class XGain : IServer
     {
         public event EventHandler<Message> OnNewMessage;
-
+        private readonly Func<IProcessor> _requestProcessorResolver;
         private readonly TcpListener _listener;
 
-        public XGain(IPAddress ipAddress, int port)
+        public XGain(IPAddress ipAddress, int port, Func<IProcessor> requestProcessorResolver)
         {
+            _requestProcessorResolver = requestProcessorResolver;
             _listener = new TcpListener(ipAddress, port);
         }
 
@@ -25,10 +28,11 @@ namespace XGain
             {
                 try
                 {
-                    TcpClient client = await _listener.AcceptTcpClientAsync();
+                    Socket socket = await _listener.AcceptSocketAsync();
+                    ISocket request = new XGainSocket(socket);
                     Task.Factory.StartNew(() =>
                     {
-                        ProcessConnection(client);
+                        ProcessSocketConnection(request);
                     });
                 }
                 catch (Exception ex)
@@ -37,7 +41,18 @@ namespace XGain
             }
         }
 
-        private async void ProcessConnection(TcpClient client)
+        private void ProcessSocketConnection(ISocket socket)
+        {
+            Message args = new Message();
+
+            IProcessor processor = _requestProcessorResolver();
+            processor.ProcessSocketConnection(socket, args);
+
+            var handler = OnNewMessage;
+            handler?.Invoke(socket, args);
+        }
+
+        protected async void ProcessTcpCLientConnection(TcpClient client)
         {
             Message args = new Message();
             using (MemoryStream ms = new MemoryStream())
@@ -46,7 +61,7 @@ namespace XGain
                 {
                     while (ns.DataAvailable)
                     {
-                        byte[] buffer = new byte[1024*8];
+                        byte[] buffer = new byte[1024 * 8];
 
                         int received = ns.Read(buffer, 0, buffer.Length);
 
