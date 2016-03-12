@@ -4,15 +4,7 @@ namespace XGain
 {
     public class Message : EventArgs
     {
-        public Message()
-        {
-        }
-
-        public Message(byte[] requestBytes)
-        {
-            RequestBytes = requestBytes;
-        }
-
+        public object[] UserToken { get; set; }
         public byte[] RequestBytes { get; set; }
     }
 }
