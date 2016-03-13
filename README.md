@@ -5,12 +5,11 @@ Xgain is a TCP/IP wrapper based on TcpListener and Socket class. Usage of IServe
 
 ### Usage
 ```csharp
-    using(IServer server = new XGainServer(IPAddress.Any, 5000, () => new SocketProcessor())
-    {
-        server.OnNewMessage += (sender, message) => {} // assign your method
-        Task worker = server.Start();
-        worker.Wait();
-    }
+using(IServer server = new XGainServer(IPAddress.Any, 5000, () => new SocketProcessor())
+{
+    server.OnNewMessage += (sender, message) => {} // assign your method
+    Task worker = server.Start();
+    worker.Wait();
 }
 ```
 License
