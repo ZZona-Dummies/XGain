@@ -13,31 +13,13 @@ namespace XGain
         private readonly Func<IProcessor<Message>> _requestProcessorResolver;
         private readonly TcpListener _listener;
 
-        public XGainServer(IPAddress ipAddress, int port, Func<IProcessor<Message>> requestProcessorResolver, 50)
+        public XGainServer(IPAddress ipAddress, int port, Func<IProcessor<Message>> requestProcessorResolver)
         {
             _requestProcessorResolver = requestProcessorResolver;
             _listener = new TcpListener(ipAddress, port);
         }
 
         public async Task Start()
-        {
-            _listener.Start();
-
-            while (true)
-            {
-                try
-                {
-                    Socket socket = await _listener.AcceptSocketAsync();
-                    ISocket request = new XGainSocket(socket);
-                    ProcessSocketConnection(request);
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        public async Task StartParralel()
         {
             _listener.Start();
 
@@ -68,7 +50,7 @@ namespace XGain
             var handler = OnNewMessage;
             handler?.Invoke(socket, args);
         }
-
+        
         public void Dispose()
         {
             try
