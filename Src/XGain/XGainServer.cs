@@ -29,6 +29,25 @@ namespace XGain
                 {
                     Socket socket = await _listener.AcceptSocketAsync();
                     ISocket request = new XGainSocket(socket);
+
+                    ProcessSocketConnection(request);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+
+        public async Task StartParallel()
+        {
+            _listener.Start();
+
+            while (true)
+            {
+                try
+                {
+                    Socket socket = await _listener.AcceptSocketAsync();
+                    ISocket request = new XGainSocket(socket);
                     Task.Factory.StartNew(() =>
                     {
                         ProcessSocketConnection(request);
@@ -50,7 +69,7 @@ namespace XGain
             var handler = OnNewMessage;
             handler?.Invoke(socket, args);
         }
-        
+
         public void Dispose()
         {
             try
