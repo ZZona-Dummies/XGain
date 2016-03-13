@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using XGain.Sockets;
+﻿using XGain.Sockets;
 
 namespace XGain.Processing
 {
@@ -11,6 +9,5 @@ namespace XGain.Processing
 
     public interface IProcessor
     {
-        void ProcessSocketConnection(ISocket socket, EventArgs args);
     }
 }
