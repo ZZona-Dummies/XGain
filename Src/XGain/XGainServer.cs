@@ -37,7 +37,7 @@ namespace XGain
                 {
                     Socket socket = await _listener.AcceptSocketAsync();
                     ISocket request = new XGainSocket(socket);
-                    Task.Factory.StartNew(async () =>
+                    Task.Factory.StartNew(() =>
                     {
                         ProcessSocketConnection(request);
                     });
