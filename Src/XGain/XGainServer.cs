@@ -38,27 +38,6 @@ namespace XGain
             }
         }
 
-        public async Task StartParallel()
-        {
-            _listener.Start();
-
-            while (true)
-            {
-                try
-                {
-                    Socket socket = await _listener.AcceptSocketAsync();
-                    ISocket request = new XGainSocket(socket);
-                    Task.Factory.StartNew(() =>
-                    {
-                        ProcessSocketConnection(request);
-                    });
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
         private void ProcessSocketConnection(ISocket socket)
         {
             Message args = new Message();
