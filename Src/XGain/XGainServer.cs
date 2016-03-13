@@ -10,10 +10,10 @@ namespace XGain
     public class XGainServer : IServer
     {
         public event EventHandler<Message> OnNewMessage;
-        private readonly Func<IProcessor> _requestProcessorResolver;
+        private readonly Func<IProcessor<Message>> _requestProcessorResolver;
         private readonly TcpListener _listener;
 
-        public XGainServer(IPAddress ipAddress, int port, Func<IProcessor> requestProcessorResolver)
+        public XGainServer(IPAddress ipAddress, int port, Func<IProcessor<Message>> requestProcessorResolver)
         {
             _requestProcessorResolver = requestProcessorResolver;
             _listener = new TcpListener(ipAddress, port);
@@ -44,7 +44,7 @@ namespace XGain
         {
             Message args = new Message();
 
-            IProcessor processor = _requestProcessorResolver();
+            IProcessor<Message> processor = _requestProcessorResolver();
             processor.ProcessSocketConnection(socket, args);
 
             var handler = OnNewMessage;
