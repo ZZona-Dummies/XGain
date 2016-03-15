@@ -25,7 +25,8 @@
             }
         }
     },
-    "licenseUrl": "",
+    "licenseUrl": "https://raw.githubusercontent.com/lukasz-pyrzyk/XGain/master/license.txt",
+    "iconUrl": "https://raw.githubusercontent.com/lukasz-pyrzyk/XGain/master/Nuget/",
     "projectUrl": "https://github.com/lukasz-pyrzyk/XGain",
     "tags": [ "socket tcp/ip socket server" ],
     "version": "1.0.0-*"
