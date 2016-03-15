@@ -26,7 +26,7 @@
             }
         }
     },
-    "iconUrl": "https://github.com/lukasz-pyrzyk/XGain/blob/master/Nuget/icon.png",
+    "iconUrl": "https://raw.githubusercontent.com/lukasz-pyrzyk/XGain/master/Nuget/icon.png",
     "licenseUrl": "https://raw.githubusercontent.com/lukasz-pyrzyk/XGain/master/license.txt",
     "projectUrl": "https://github.com/lukasz-pyrzyk/XGain",
     "tags": [ "socket tcp/ip socket server" ],
