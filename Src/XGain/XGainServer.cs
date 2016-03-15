@@ -23,7 +23,7 @@ namespace XGain
             _listener = new TcpListener(ipAddress, port);
         }
 
-        public async Task Start(CancellationToken token)
+        public async Task StartSynchronously(CancellationToken token)
         {
             _listener.Start();
             RaiseOnStartEvent();
@@ -38,6 +38,40 @@ namespace XGain
                     ISocket request = new XGainSocket(socket);
 
                     ProcessSocketConnection(request);
+                }
+                catch (Exception ex)
+                {
+                    RaiseOnError(ex);
+                }
+            }
+        }
+
+        public async Task StartParallel(CancellationToken token, int? maxDegreeOfParallelism = null)
+        {
+            _listener.Start();
+            RaiseOnStartEvent();
+
+            int maximumConcurrencyLevel = maxDegreeOfParallelism ?? TaskScheduler.Current.MaximumConcurrencyLevel;
+            int workers = 0;
+            AutoResetEvent resetEvent = new AutoResetEvent(false);
+
+            while (true)
+            {
+                token.ThrowIfCancellationRequested();
+
+                try
+                {
+                    if (workers >= maximumConcurrencyLevel)
+                        resetEvent.WaitOne();
+
+                    Task<Socket> task = _listener.AcceptSocketAsync();
+                    Interlocked.Increment(ref workers);
+                    await task.ContinueWith(socket =>
+                    {
+                        ISocket request = new XGainSocket(socket.Result);
+                        ProcessSocketConnection(request);
+                        Interlocked.Decrement(ref workers);
+                    }, token);
                 }
                 catch (Exception ex)
                 {

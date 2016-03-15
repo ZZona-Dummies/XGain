@@ -6,7 +6,7 @@ namespace XGain
 {
     public interface IServer : IDisposable
     {
-        Task Start(CancellationToken token);
+        Task StartSynchronously(CancellationToken token);
         event EventHandler OnStart;
         event EventHandler<Message> OnNewMessage;
         event EventHandler<ErrorArgs> OnError;
