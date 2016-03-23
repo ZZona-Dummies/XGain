@@ -54,7 +54,7 @@ namespace XGain
             _listener.Start();
             RaiseOnStartEvent(ProcessingType.Parallel);
 
-            int maximumConcurrencyLevel = maxDegreeOfParallelism ?? TaskScheduler.Current.MaximumConcurrencyLevel;
+            int maximumConcurrencyLevel = maxDegreeOfParallelism ?? Environment.ProcessorCount;
             AutoResetEvent resetEvent = new AutoResetEvent(false);
 
             while (true)
