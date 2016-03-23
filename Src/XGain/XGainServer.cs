@@ -96,9 +96,12 @@ namespace XGain
 
         private void ProcessSocketConnection(ISocket socket)
         {
+            MessageArgs args = new MessageArgs();
+
             IProcessor<MessageArgs> processor = _requestProcessorResolver();
-            Task<MessageArgs> processorTask = processor.ProcessSocketConnection(socket);
-            RaiseOnNewMessageEvent(socket, processorTask.Result);
+            processor.ProcessSocketConnection(socket, args);
+
+            RaiseOnNewMessageEvent(socket, args);
         }
 
         private void RaiseOnStartEvent(ProcessingType processingType)
