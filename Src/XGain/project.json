@@ -4,9 +4,6 @@
         "XGain": "XGain"
     },
     "copyright": "Lukasz Pyrzyk",
-    "dependencies": {
-        "protobuf-net": "2.1.0-alpha-1"
-    },
     "description": "XGain - TCP/IP server based on the top of TcpListener",
     "frameworks": {
         "dnx451": {
