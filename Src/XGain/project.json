@@ -28,5 +28,5 @@
     "projectUrl": "https://github.com/lukasz-pyrzyk/XGain",
     "tags": [ "socket tcp/ip socket server" ],
     "title": "XGain",
-    "version": "1.0.1"
+    "version": "1.0.1-*"
 }
