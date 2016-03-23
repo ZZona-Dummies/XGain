@@ -1,9 +1,10 @@
-﻿using XGain.Sockets;
+﻿using System.Threading.Tasks;
+using XGain.Sockets;
 
 namespace XGain.Processing
 {
     public interface IProcessor<T> where T : MessageArgs
     {
-        void ProcessSocketConnection(ISocket socket, out T args);
+        Task<T> ProcessSocketConnection(ISocket socket);
     }
 }
