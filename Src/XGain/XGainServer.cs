@@ -96,10 +96,10 @@ namespace XGain
 
         private void ProcessSocketConnection(ISocket socket)
         {
-            MessageArgs args = new MessageArgs();
+            MessageArgs args;
 
             IProcessor<MessageArgs> processor = _requestProcessorResolver();
-            processor.ProcessSocketConnection(socket, args);
+            processor.ProcessSocketConnection(socket, out args);
 
             RaiseOnNewMessageEvent(socket, args);
         }
