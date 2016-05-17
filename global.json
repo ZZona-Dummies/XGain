@@ -1,3 +1,4 @@
 {
-    "projects": [ "Src" ]
+  "projects": [ "Src" ],
+  "version": "1.0.0-preview1-002702"
 }
