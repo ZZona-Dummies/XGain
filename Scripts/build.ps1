@@ -11,7 +11,7 @@ $projects = @(
 
 # build function for project
 function Build($path){
-    dotnet build $path --version-suffix $version;
+    dotnet build $path --version-suffix $version --no-incremental;
 }
 
 function RestorePackages(){
