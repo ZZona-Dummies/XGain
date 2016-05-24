@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "NETStandard.Library": "1.5.0-rc2-24027",
-    "XGain": "1.0.0-alpha-*"
+    "XGain": "1.1.0-*"
   },
   "description": "XGain.Tests project",
   "frameworks": {
