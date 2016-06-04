@@ -8,6 +8,9 @@
   "frameworks": {
     "netstandard1.5": {
       "imports": "dnxcore50"
+    },
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
     }
   },
   "packOptions": {
@@ -15,7 +18,7 @@
     "licenseUrl": "https://raw.githubusercontent.com/lukasz-pyrzyk/XGain/master/license.txt",
     "projectUrl": "https://github.com/lukasz-pyrzyk/XGain",
     "tags": [ "socket tcp/ip socket server" ],
-    "title": "XGain",
+    "title": "XGain"
   },
-  "version": "1.1.0-alpha-*"
+  "version": "1.1.0-*"
 }
