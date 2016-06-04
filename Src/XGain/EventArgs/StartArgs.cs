@@ -5,13 +5,11 @@ namespace XGain
 {
     public class StartArgs : EventArgs
     {
-        public StartArgs(ProcessingType processingType, EndPoint localEndpoint)
+        public StartArgs(EndPoint localEndpoint)
         {
-            ProcessingType = processingType;
             LocalEndpoint = localEndpoint;
         }
 
         public EndPoint LocalEndpoint { get; }
-        public ProcessingType ProcessingType { get; }
     }
 }

@@ -17,7 +17,9 @@ namespace XGain
         private readonly Func<IProcessor<MessageArgs>> _requestProcessorResolver;
         private readonly TcpListener _listener;
 
-        private int _workers = 0;
+        public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, () => new BigIndianProcessor())
+        {
+        }
 
         public XGainServer(IPAddress ipAddress, int port, Func<IProcessor<MessageArgs>> requestProcessorResolver)
         {
@@ -25,11 +27,10 @@ namespace XGain
             _listener = new TcpListener(ipAddress, port);
         }
 
-        public async Task StartSynchronously(CancellationToken token)
+        public async Task Start(CancellationToken token, int? maxDegreeOfParallelism = null)
         {
             _listener.Start();
-            RaiseOnStartEvent(ProcessingType.Synchronously);
-            _workers = 1;
+            RaiseOnStartEvent();
 
             while (true)
             {
@@ -38,41 +39,10 @@ namespace XGain
                 try
                 {
                     Socket socket = await _listener.AcceptSocketAsync();
-                    ISocket request = new XGainSocket(socket);
-
-                    ProcessSocketConnection(request);
-                }
-                catch (Exception ex)
-                {
-                    RaiseOnError(ex);
-                }
-            }
-        }
-
-        public async Task StartParallel(CancellationToken token, int? maxDegreeOfParallelism = null)
-        {
-            _listener.Start();
-            RaiseOnStartEvent(ProcessingType.Parallel);
-
-            int maximumConcurrencyLevel = maxDegreeOfParallelism ?? Environment.ProcessorCount;
-            AutoResetEvent resetEvent = new AutoResetEvent(false);
-
-            while (true)
-            {
-                token.ThrowIfCancellationRequested();
-
-                try
-                {
-                    if (_workers >= maximumConcurrencyLevel)
-                        resetEvent.WaitOne();
-
-                    Task<Socket> task = _listener.AcceptSocketAsync();
-                    Interlocked.Increment(ref _workers);
-                    await task.ContinueWith(socket =>
+                    Task.Run(() =>
                     {
-                        ISocket request = new XGainSocket(socket.Result);
+                        ISocket request = new XGainSocket(socket);
                         ProcessSocketConnection(request);
-                        Interlocked.Decrement(ref _workers);
                     }, token);
                 }
                 catch (Exception ex)
@@ -96,7 +66,7 @@ namespace XGain
 
         private void ProcessSocketConnection(ISocket socket)
         {
-            MessageArgs args = new MessageArgs();
+            MessageArgs args = new MessageArgs(socket);
 
             IProcessor<MessageArgs> processor = _requestProcessorResolver();
             processor.ProcessSocketConnection(socket, args);
@@ -104,10 +74,10 @@ namespace XGain
             RaiseOnNewMessageEvent(socket, args);
         }
 
-        private void RaiseOnStartEvent(ProcessingType processingType)
+        private void RaiseOnStartEvent()
         {
             var handler = OnStart;
-            handler?.Invoke(this, new StartArgs(processingType, _listener.LocalEndpoint));
+            handler?.Invoke(this, new StartArgs(_listener.LocalEndpoint));
         }
 
         private void RaiseOnError(Exception ex)

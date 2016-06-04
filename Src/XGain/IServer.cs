@@ -10,7 +10,6 @@ namespace XGain
         event EventHandler<MessageArgs> OnNewMessage;
         event EventHandler<ErrorArgs> OnError;
 
-        Task StartSynchronously(CancellationToken token);
-        Task StartParallel(CancellationToken token, int? maxDegreeOfParallelism = null);
+        Task Start(CancellationToken token, int? maxDegreeOfParallelism = null);
     }
 }

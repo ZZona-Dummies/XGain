@@ -5,7 +5,7 @@ namespace XGain.Sockets
 {
     public class XGainSocket : ISocket
     {
-        public int BufferSize => 65535;
+        public int BufferSize => 8192;
         public bool Connected => _socket.Connected;
         public Socket InternalSocket => _socket;
         public EndPoint LocalEndPoint => _socket.LocalEndPoint;
@@ -14,8 +14,8 @@ namespace XGain.Sockets
         private readonly Socket _socket;
 
         public XGainSocket(
-            AddressFamily addressFamily, 
-            SocketType socketType = SocketType.Stream, 
+            AddressFamily addressFamily,
+            SocketType socketType = SocketType.Stream,
             ProtocolType protocolType = ProtocolType.Tcp,
             bool noDelay = true,
             int? buffer = null)
@@ -38,7 +38,7 @@ namespace XGain.Sockets
             Socket client = _socket.Accept();
             return new XGainSocket(client);
         }
-        
+
         public void Bind(IPEndPoint localEndPoint)
         {
             _socket.Bind(localEndPoint);
