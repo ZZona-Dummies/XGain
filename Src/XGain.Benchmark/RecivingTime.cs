@@ -4,35 +4,37 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
+using System.Linq;
 
 namespace XGain.Benchmark
 {
-    // This project can output the Class library as a NuGet Package.
-    // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class RecivingTime
     {
         private const int N = 10000;
+        private const int port = 5000;
+
         private readonly byte[] data;
+
+        private readonly IPAddress ip = Dns.GetHostAddressesAsync(Dns.GetHostName()).Result
+            .First(a => a.AddressFamily == AddressFamily.InterNetwork);
+
+        private readonly IServer Server = new XGainServer(IPAddress.Any, port);
+        private readonly TcpClient client = new TcpClient();
+        private Task _serverWorker;
 
         public RecivingTime()
         {
             data = new byte[N];
             new Random(42).NextBytes(data);
+            Server.Start(CancellationToken.None, 1);
+            client.ConnectAsync(ip, port).Wait();
         }
 
         [Benchmark]
-        public void DoWork()
+        public void SendPackages()
         {
-            const int port = 5000;
-
-            IServer server = new XGainServer(IPAddress.Any, port);
-            Task ServerWorker = server.Start(CancellationToken.None, 1);
-
             for (int i = 0; i < 100; i++)
             {
-                var client = new TcpClient();
-                client.ConnectAsync(IPAddress.Parse("192.168.43.75"), port).Wait();
-
                 client.GetStream().WriteAsync(data, 0, data.Length).Wait();
             }
         }
