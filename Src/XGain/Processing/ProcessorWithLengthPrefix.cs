@@ -5,7 +5,7 @@ using XGain.Sockets;
 
 namespace XGain.Processing
 {
-    public class BigIndianProcessor : IProcessor<MessageArgs>
+    public class ProcessorWithLengthPrefix : IProcessor<MessageArgs>
     {
         public async Task ProcessSocketConnection(ISocket client, MessageArgs args)
         {
