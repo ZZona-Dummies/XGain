@@ -14,17 +14,17 @@ namespace XGain
         public event EventHandler<MessageArgs> OnNewMessage;
         public event EventHandler<ErrorArgs> OnError;
 
-        private readonly Func<IProcessor<MessageArgs>> _requestProcessorResolver;
         private readonly TcpListener _listener;
+        private readonly IProcessor<MessageArgs> _processor;
 
-        public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, () => new ProcessorWithLengthPrefix())
+        public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, new ProcessorWithLengthPrefix())
         {
         }
 
-        public XGainServer(IPAddress ipAddress, int port, Func<IProcessor<MessageArgs>> requestProcessorResolver)
+        public XGainServer(IPAddress ipAddress, int port, IProcessor<MessageArgs> processor)
         {
-            _requestProcessorResolver = requestProcessorResolver;
             _listener = new TcpListener(ipAddress, port);
+            _processor = processor;
         }
 
         public async Task Start(CancellationToken token, int? maxDegreeOfParallelism = null)
@@ -64,13 +64,9 @@ namespace XGain
             }
         }
 
-        private void ProcessSocketConnection(ISocket socket)
+        private async void ProcessSocketConnection(ISocket socket)
         {
-            MessageArgs args = new MessageArgs(socket);
-
-            IProcessor<MessageArgs> processor = _requestProcessorResolver();
-            processor.ProcessSocketConnection(socket, args);
-
+            MessageArgs args = await _processor.ProcessSocketConnectionAsync(socket);
             RaiseOnNewMessageEvent(socket, args);
         }
 

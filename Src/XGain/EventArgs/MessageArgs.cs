@@ -5,13 +5,15 @@ namespace XGain
 {
     public class MessageArgs : EventArgs
     {
-        public MessageArgs(ISocket client)
+        public MessageArgs(ISocket client, byte[] requestBytes, object userToken = null)
         {
             Client = client;
+            RequestBytes = requestBytes;
+            UserToken = userToken;
         }
 
         public ISocket Client { get; }
-        public object UserToken { get; set; }
-        public byte[] RequestBytes { get; set; }
+        public byte[] RequestBytes { get; }
+        public object UserToken { get; }
     }
 }

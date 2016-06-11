@@ -3,8 +3,8 @@ using XGain.Sockets;
 
 namespace XGain.Processing
 {
-    public interface IProcessor<in T> where T : MessageArgs
+    public interface IProcessor<T> where T : MessageArgs
     {
-        Task ProcessSocketConnection(ISocket socket, T args);
+        Task<T> ProcessSocketConnectionAsync(ISocket socket);
     }
 }

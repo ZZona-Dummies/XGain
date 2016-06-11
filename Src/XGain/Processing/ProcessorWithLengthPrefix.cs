@@ -8,13 +8,13 @@ namespace XGain.Processing
 {
     public class ProcessorWithLengthPrefix : IProcessor<MessageArgs>
     {
-        public async Task ProcessSocketConnection(ISocket client, MessageArgs args)
+        public async Task<MessageArgs> ProcessSocketConnectionAsync(ISocket client)
         {
             byte[] packageSizeBuffer = ArrayPool<byte>.Shared.Rent(sizeof(long));
             int position = client.Receive(packageSizeBuffer);
-
             long requestSize = BitConverter.ToInt64(packageSizeBuffer, 0);
 
+            MessageArgs args;
             using (MemoryStream ms = new MemoryStream())
             {
                 await ms.WriteAsync(packageSizeBuffer, 0, position);
@@ -35,10 +35,12 @@ namespace XGain.Processing
                 byte[] statusBuffer = BitConverter.GetBytes(ms.Length);
                 client.Send(statusBuffer);
 
-                args.RequestBytes = ms.ToArray();
+                args = new MessageArgs(client, ms.ToArray());
             }
 
             ArrayPool<byte>.Shared.Return(packageSizeBuffer, true);
+
+            return args;
         }
     }
 }
