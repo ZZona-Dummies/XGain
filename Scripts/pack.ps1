@@ -9,7 +9,7 @@ $projects = @(
 
 # pack function for project
 function Pack($path){
-    dotnet pack $path --version-suffix $version;
+    dotnet pack $path -c Release --version-suffix $version;
 }
 
 write-host "Packeging started";
