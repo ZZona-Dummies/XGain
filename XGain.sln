@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{0A0345BB-283E-487E-9665-2B08CB5204BF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EA07903-9A5A-429E-9670-A9EE233DDF08}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
@@ -12,11 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain", "Src\XGain\XGain.xproj", "{99957B9C-81A0-466F-950A-99F921BA6B87}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C703A9AE-C05E-4547-B8D7-6E9BAAA45336}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain.Tests", "Src\Tests\XGain.Tests\XGain.Tests.xproj", "{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain.Benchmark", "Src\XGain.Benchmark\XGain.Benchmark.xproj", "{794FC4E7-C43C-451C-AFFB-1F75F4DCB083}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain.Tests", "Src\XGain.Tests\XGain.Tests.xproj", "{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,22 +24,16 @@ Global
 		{99957B9C-81A0-466F-950A-99F921BA6B87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99957B9C-81A0-466F-950A-99F921BA6B87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99957B9C-81A0-466F-950A-99F921BA6B87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{794FC4E7-C43C-451C-AFFB-1F75F4DCB083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{794FC4E7-C43C-451C-AFFB-1F75F4DCB083}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{794FC4E7-C43C-451C-AFFB-1F75F4DCB083}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{794FC4E7-C43C-451C-AFFB-1F75F4DCB083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{99957B9C-81A0-466F-950A-99F921BA6B87} = {0A0345BB-283E-487E-9665-2B08CB5204BF}
-		{C703A9AE-C05E-4547-B8D7-6E9BAAA45336} = {0A0345BB-283E-487E-9665-2B08CB5204BF}
-		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35} = {C703A9AE-C05E-4547-B8D7-6E9BAAA45336}
-		{794FC4E7-C43C-451C-AFFB-1F75F4DCB083} = {0A0345BB-283E-487E-9665-2B08CB5204BF}
 	EndGlobalSection
 EndGlobal
