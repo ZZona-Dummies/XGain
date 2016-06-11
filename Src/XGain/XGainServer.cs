@@ -17,7 +17,7 @@ namespace XGain
         private readonly Func<IProcessor<MessageArgs>> _requestProcessorResolver;
         private readonly TcpListener _listener;
 
-        public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, () => new BigIndianProcessor())
+        public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, () => new ProcessorWithLengthPrefix())
         {
         }
 
