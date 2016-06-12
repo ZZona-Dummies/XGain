@@ -15,7 +15,7 @@ function Build($path){
 }
 
 function RestorePackages(){
-    dotnet restore;
+    dotnet restore --no-cache;
 }
 
 write-host "Build started";
@@ -29,5 +29,8 @@ foreach ($project in $projects){
     write-host "Building " $project "with suffix version " $version
     Build($project);
 }
+
+# Set build as failed if any error occurred
+if($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode )  }
 
 write-host "Build finished";
