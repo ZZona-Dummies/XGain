@@ -4,8 +4,7 @@
   "description": "XGain - TCP/IP server based on the top of TcpListener",
   "dependencies": {
     "NETStandard.Library": "1.5.0-rc2-24027",
-    "System.Buffers": "4.0.0-rc2-24027",
-    "System.Buffers.Experimental": "0.1.0-e160527-1"
+    "System.Buffers": "4.0.0-rc2-24027"
   },
   "frameworks": {
     "netstandard1.5": {
