@@ -9,7 +9,7 @@ $src = ".\Src\"
 
 # test projects to run with OpenCover
 $projects = @(
-    @{Path="Tests\XGain.Tests"; Filter="+[Kronos]*"}
+    @{Path=".\XGain.Tests"; Filter="+[XGain]*"}
 )
 
 function RunCodeCoverage($testProject, $filter) {
