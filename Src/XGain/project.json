@@ -3,15 +3,15 @@
   "copyright": "Lukasz Pyrzyk",
   "description": "XGain - TCP/IP server based on the top of TcpListener",
   "dependencies": {
-    "NETStandard.Library": "1.5.0-rc2-24027",
-    "System.Buffers": "4.0.0-rc2-24027"
+    "System.Buffers": "4.0.0",
+    "System.Net.Sockets": "4.1.0",
+    "System.Runtime.Extensions": "4.1.0"
   },
   "frameworks": {
-    "netstandard1.5": {
-      "imports": "dnxcore50"
-    },
-    "netcoreapp1.0": {
-      "imports": "dnxcore50"
+    "netstandard1.3": {
+      "imports": [
+        "dotnet5.2"
+      ]
     }
   },
   "packOptions": {
@@ -21,5 +21,5 @@
     "tags": [ "socket tcp/ip socket server" ],
     "title": "XGain"
   },
-  "version": "1.1.1-rc-*"
+  "version": "1.2.0-rc-*"
 }
