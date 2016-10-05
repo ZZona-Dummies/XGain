@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using NSubstitute;
 using XGain.Sockets;
 using Xunit;
 
@@ -9,7 +9,7 @@ namespace XGain.Tests.EventArgs
         [Fact]
         public void Ctor_AssingsProperties()
         {
-            ISocket client = Mock.Of<ISocket>();
+            ISocket client = Substitute.For<ISocket>();
             byte[] requestBytes = new byte[1024];
             object userToken = new object();
 
@@ -23,7 +23,7 @@ namespace XGain.Tests.EventArgs
         [Fact]
         public void Ctor_AssingsPropertiesWithDefaultValues()
         {
-            ISocket client = Mock.Of<ISocket>();
+            ISocket client = Substitute.For<ISocket>();
             byte[] requestBytes = new byte[1024];
 
             MessageArgs args = new MessageArgs(client, requestBytes);
