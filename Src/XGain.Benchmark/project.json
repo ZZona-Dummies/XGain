@@ -9,7 +9,7 @@
       "type": "platform",
       "version": "1.0.0"
     },
-    "XGain": "1.2.0"
+    "XGain": "1.2.1"
   },
   "frameworks": {
     "netcoreapp1.0": {
