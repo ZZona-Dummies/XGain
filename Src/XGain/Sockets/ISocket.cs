@@ -6,7 +6,7 @@ namespace XGain.Sockets
 {
     public interface ISocket : IDisposable
     {
-        int BufferSize { get; }
+        int BufferSize { get; set; }
         bool Connected { get; }
         Socket InternalSocket { get; }
         EndPoint LocalEndPoint { get; }
@@ -17,7 +17,9 @@ namespace XGain.Sockets
         void Connect(IPEndPoint remoteEndPoint);
         void Listen(int backlog);
         int Receive(byte[] buffer);
+        bool ReceiveAsync(SocketAsyncEventArgs args);
         int Send(byte[] buffer);
+        bool SendAsync(SocketAsyncEventArgs args);
         void Shutdown(SocketShutdown how);
     }
 }

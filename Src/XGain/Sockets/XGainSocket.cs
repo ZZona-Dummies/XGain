@@ -5,7 +5,8 @@ namespace XGain.Sockets
 {
     public class XGainSocket : ISocket
     {
-        public int BufferSize => 8192;
+        public int BufferSize { get; set; } = 8192;
+
         public bool Connected => _socket.Connected;
         public Socket InternalSocket => _socket;
         public EndPoint LocalEndPoint => _socket.LocalEndPoint;
@@ -59,9 +60,19 @@ namespace XGain.Sockets
             return _socket.Receive(buffer);
         }
 
+        public bool ReceiveAsync(SocketAsyncEventArgs args)
+        {
+            return _socket.ReceiveAsync(args);
+        }
+
         public int Send(byte[] buffer)
         {
             return _socket.Send(buffer);
+        }
+
+        public bool SendAsync(SocketAsyncEventArgs args)
+        {
+            return _socket.SendAsync(args);
         }
 
         public void Shutdown(SocketShutdown how)
