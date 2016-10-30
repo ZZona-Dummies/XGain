@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 
 namespace XGain.Sockets
@@ -60,6 +62,41 @@ namespace XGain.Sockets
             return _socket.Receive(buffer);
         }
 
+        public int Receive(byte[] buffer, int offset, int size, SocketFlags socketFlags)
+        {
+            return _socket.Receive(buffer, offset, size, socketFlags);
+        }
+
+        public int Receive(byte[] buffer, int offset, int size, SocketFlags socketFlags, out SocketError errorCode)
+        {
+            return _socket.Receive(buffer, offset, size, socketFlags, out errorCode);
+        }
+
+        public int Receive(byte[] buffer, int size, SocketFlags socketFlags)
+        {
+            return _socket.Receive(buffer, size, socketFlags);
+        }
+
+        public int Receive(byte[] buffer, SocketFlags socketFlags)
+        {
+            return _socket.Receive(buffer, socketFlags);
+        }
+
+        public int Receive(IList<ArraySegment<byte>> buffers)
+        {
+            return _socket.Receive(buffers);
+        }
+
+        public int Receive(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags)
+        {
+            return _socket.Receive(buffers, socketFlags);
+        }
+
+        public int Receive(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags, out SocketError errorCode)
+        {
+            return _socket.Receive(buffers, socketFlags, out errorCode);
+        }
+
         public bool ReceiveAsync(SocketAsyncEventArgs args)
         {
             return _socket.ReceiveAsync(args);
@@ -68,6 +105,41 @@ namespace XGain.Sockets
         public int Send(byte[] buffer)
         {
             return _socket.Send(buffer);
+        }
+
+        public int Send(byte[] buffer, int offset, int size, SocketFlags socketFlags)
+        {
+            return _socket.Send(buffer, offset, size, socketFlags);
+        }
+
+        public int Send(byte[] buffer, int offset, int size, SocketFlags socketFlags, out SocketError errorCode)
+        {
+            return _socket.Send(buffer, offset, size, socketFlags, out errorCode);
+        }
+
+        public int Send(byte[] buffer, int size, SocketFlags socketFlags)
+        {
+            return _socket.Send(buffer, size, socketFlags);
+        }
+
+        public int Send(byte[] buffer, SocketFlags socketFlags)
+        {
+            return _socket.Send(buffer, socketFlags);
+        }
+
+        public int Send(IList<ArraySegment<byte>> buffers)
+        {
+            return _socket.Send(buffers);
+        }
+
+        public int Send(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags)
+        {
+            return _socket.Send(buffers, socketFlags);
+        }
+
+        public int Send(IList<ArraySegment<byte>> buffers, SocketFlags socketFlags, out SocketError errorCode)
+        {
+            return _socket.Send(buffers, socketFlags, out errorCode);
         }
 
         public bool SendAsync(SocketAsyncEventArgs args)
