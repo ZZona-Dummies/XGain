@@ -34,6 +34,9 @@ namespace XGain.Sockets
         public XGainSocket(Socket socket)
         {
             _socket = socket;
+            _socket.SendBufferSize = BufferSize;
+            _socket.ReceiveBufferSize = BufferSize;
+            _socket.NoDelay = true;
         }
 
         public ISocket Accept()
