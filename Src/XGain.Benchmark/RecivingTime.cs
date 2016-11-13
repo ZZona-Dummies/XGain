@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using System.Linq;
 
@@ -17,16 +16,15 @@ namespace XGain.Benchmark
         private readonly IPAddress ip = Dns.GetHostAddressesAsync(Dns.GetHostName()).Result
             .First(a => a.AddressFamily == AddressFamily.InterNetwork);
 
-        private readonly IServer Server = new XGainServer(IPAddress.Any, port);
-        private readonly TcpClient client = new TcpClient();
-        private Task _serverWorker;
+        private readonly IServer _server = new XGainServer(IPAddress.Any, port);
+        private readonly TcpClient _client = new TcpClient();
 
         public RecivingTime()
         {
             data = new byte[N];
             new Random(42).NextBytes(data);
-            Server.StartAsync(1);
-            client.ConnectAsync(ip, port).Wait();
+            _server.Start(1);
+            _client.ConnectAsync(ip, port).Wait();
         }
 
         [Benchmark]
@@ -34,7 +32,7 @@ namespace XGain.Benchmark
         {
             for (int i = 0; i < 100; i++)
             {
-                client.GetStream().WriteAsync(data, 0, data.Length).Wait();
+                _client.GetStream().WriteAsync(data, 0, data.Length).Wait();
             }
         }
     }

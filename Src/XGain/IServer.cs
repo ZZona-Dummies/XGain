@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace XGain
 {
@@ -9,7 +8,7 @@ namespace XGain
         event EventHandler<MessageArgs> OnNewMessage;
         event EventHandler<ErrorArgs> OnError;
 
-        Task StartAsync(int? maxDegreeOfParallelism = null);
+        void Start(int? maxDegreeOfParallelism = null);
         void Stop();
     }
 }

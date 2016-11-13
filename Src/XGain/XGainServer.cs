@@ -29,32 +29,35 @@ namespace XGain
             _processor = processor;
         }
 
-        public async Task StartAsync(int? maxDegreeOfParallelism = null)
+        public void Start(int? maxDegreeOfParallelism = null)
         {
             _listener.Start();
             RaiseOnStartEvent();
 
             CancellationToken token = _cancel.Token;
 
-            while (true)
+            Task.Run(async () =>
             {
-                if (token.IsCancellationRequested)
-                    break;
+                while (true)
+                {
+                    if (token.IsCancellationRequested)
+                        break;
 
-                try
-                {
-                    Socket socket = await _listener.AcceptSocketAsync();
-                    Task.Run(() =>
+                    try
                     {
-                        ISocket request = new XGainSocket(socket);
-                        ProcessSocketConnection(request);
-                    }, token);
+                        Socket socket = await _listener.AcceptSocketAsync();
+                        Task.Run(() =>
+                        {
+                            ISocket request = new XGainSocket(socket);
+                            ProcessSocketConnection(request);
+                        }, token);
+                    }
+                    catch (Exception ex)
+                    {
+                        RaiseOnError(ex);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    RaiseOnError(ex);
-                }
-            }
+            }, token);
         }
 
         public void Stop()
