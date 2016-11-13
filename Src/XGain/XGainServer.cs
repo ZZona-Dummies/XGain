@@ -17,6 +17,8 @@ namespace XGain
         private readonly TcpListener _listener;
         private readonly IProcessor<MessageArgs> _processor;
 
+        private readonly CancellationTokenSource _cancel = new CancellationTokenSource();
+
         public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, new ProcessorWithLengthPrefix())
         {
         }
@@ -27,14 +29,17 @@ namespace XGain
             _processor = processor;
         }
 
-        public async Task Start(CancellationToken token, int? maxDegreeOfParallelism = null)
+        public async Task StartAsync(int? maxDegreeOfParallelism = null)
         {
             _listener.Start();
             RaiseOnStartEvent();
 
+            CancellationToken token = _cancel.Token;
+
             while (true)
             {
-                token.ThrowIfCancellationRequested();
+                if (token.IsCancellationRequested)
+                    break;
 
                 try
                 {
@@ -52,16 +57,22 @@ namespace XGain
             }
         }
 
-        public void Dispose()
+        public void Stop()
         {
             try
             {
+                _cancel.Cancel();
                 _listener.Stop();
             }
             catch (SocketException ex)
             {
                 RaiseOnError(ex);
             }
+        }
+
+        public void Dispose()
+        {
+            Stop();
         }
 
         private async void ProcessSocketConnection(ISocket socket)
@@ -72,20 +83,17 @@ namespace XGain
 
         private void RaiseOnStartEvent()
         {
-            var handler = OnStart;
-            handler?.Invoke(this, new StartArgs(_listener.LocalEndpoint));
+            OnStart?.Invoke(this, new StartArgs(_listener.LocalEndpoint));
         }
 
         private void RaiseOnError(Exception ex)
         {
-            var handler = OnError;
-            handler?.Invoke(this, new ErrorArgs(ex));
+            OnError?.Invoke(this, new ErrorArgs(ex));
         }
 
         private void RaiseOnNewMessageEvent(ISocket socket, MessageArgs args)
         {
-            var handler = OnNewMessage;
-            handler?.Invoke(socket, args);
+            OnNewMessage?.Invoke(socket, args);
         }
     }
 }

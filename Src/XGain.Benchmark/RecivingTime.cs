@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using System.Linq;
@@ -26,7 +25,7 @@ namespace XGain.Benchmark
         {
             data = new byte[N];
             new Random(42).NextBytes(data);
-            Server.Start(CancellationToken.None, 1);
+            Server.StartAsync(1);
             client.ConnectAsync(ip, port).Wait();
         }
 
