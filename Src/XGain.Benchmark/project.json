@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "BenchmarkDotNet": "0.9.7-beta",
-    "XGain": "1.2.4-rc"
+    "XGain": "1.2.5"
   },
   "frameworks": {
     "netcoreapp1.0": {

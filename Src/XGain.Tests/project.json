@@ -8,7 +8,7 @@
     },
     "NSubstitute": "2.0.0-rc",
     "OpenCover": "4.6.519",
-    "XGain": "1.2.4-rc",
+    "XGain": "1.2.5",
     "xunit": "2.2.0-beta2-build3300"
   },
   "description": "XGain.Tests project",
