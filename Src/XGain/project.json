@@ -20,11 +20,11 @@
     "net452": {}
   },
   "packOptions": {
-    "iconUrl": "https://raw.githubusercontent.com/lukaszpyrzyk/XGain/master/Nuget/icon.png",
+    "iconUrl": "https://raw.githubusercontent.com/lukasz-pyrzyk/XGain/master/Nuget/icon.png",
     "licenseUrl": "https://raw.githubusercontent.com/lukaszpyrzyk/XGain/master/license.txt",
     "projectUrl": "https://github.com/lukasz-pyrzyk/XGain",
     "tags": [ "socket tcp/ip socket server listener" ],
     "title": "XGain"
   },
-  "version": "1.2.5"
+  "version": "1.2.5-rc-*"
 }
