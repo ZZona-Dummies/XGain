@@ -9,7 +9,7 @@
   },
   "description": "XGain.Tests project",
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
