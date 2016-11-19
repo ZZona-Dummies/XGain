@@ -2,10 +2,6 @@
   "authors": [ "Lukasz Pyrzyk" ],
   "dependencies": {
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0"
-    },
     "NSubstitute": "2.0.0-rc",
     "OpenCover": "4.6.519",
     "XGain": "1.2.5",
@@ -14,6 +10,12 @@
   "description": "XGain.Tests project",
   "frameworks": {
     "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
       "imports": "dnxcore50"
     }
   },

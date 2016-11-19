@@ -5,7 +5,7 @@
   },
   "copyright": "Lukasz Pyrzyk",
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
+    "NETStandard.Library": "1.6.1",
     "System.Buffers": "4.0.0"
   },
   "description": "XGain - TCP/IP server based on the top of TcpListener",
