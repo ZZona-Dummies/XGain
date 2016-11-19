@@ -19,10 +19,6 @@ namespace XGain
 
         private readonly CancellationTokenSource _cancel = new CancellationTokenSource();
 
-        public XGainServer(IPAddress ipAddress, int port) : this(ipAddress, port, new ProcessorWithLengthPrefix())
-        {
-        }
-
         public XGainServer(IPAddress ipAddress, int port, IProcessor<MessageArgs> processor)
         {
             _listener = new TcpListener(ipAddress, port);
