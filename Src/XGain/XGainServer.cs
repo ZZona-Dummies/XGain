@@ -9,18 +9,18 @@ using XGain.Sockets;
 
 namespace XGain
 {
-    public class XGainServer<TMessage> : IServer where TMessage : MessageArgs
+    public class XGainServer : IServer
     {
         public event EventHandler<StartArgs> OnStart;
         public event EventHandler<MessageArgs> OnNewMessage;
         public event EventHandler<ErrorArgs> OnError;
 
         private readonly TcpListener _listener;
-        private readonly IProcessor<TMessage> _processor;
+        private readonly IProcessor<MessageArgs> _processor;
 
         private readonly CancellationTokenSource _cancel = new CancellationTokenSource();
 
-        public XGainServer(IPAddress ipAddress, int port, IProcessor<TMessage> processor)
+        public XGainServer(IPAddress ipAddress, int port, IProcessor<MessageArgs> processor)
         {
             _listener = new TcpListener(ipAddress, port);
             _processor = processor;

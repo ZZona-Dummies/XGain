@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Net;
+using Xunit;
 
 namespace XGain.Tests
 {
@@ -7,7 +8,7 @@ namespace XGain.Tests
         [Fact]
         public void DoWork()
         {
-            var server = new XGainServer<>();
+            var server = new XGainServer(IPAddress.Any, 5000, null);
         }
     }
 }

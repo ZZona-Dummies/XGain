@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using XGain.Messages;
 using XGain.Sockets;
 
 namespace XGain.Processing
