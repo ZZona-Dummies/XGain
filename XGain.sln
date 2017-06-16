@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EA07903-9A5A-429E-9670-A9EE233DDF08}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XGain", "Src\XGain\XGain.csproj", "{99957B9C-81A0-466F-950A-99F921BA6B87}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain", "Src\XGain\XGain.xproj", "{99957B9C-81A0-466F-950A-99F921BA6B87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XGain.Tests", "Src\XGain.Tests\XGain.Tests.csproj", "{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "XGain.Tests", "Src\XGain.Tests\XGain.Tests.xproj", "{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "Sample\SampleApp\SampleApp.csproj", "{70376231-D26F-4592-B079-805BC5252438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +23,10 @@ Global
 		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7440DCD7-1EE9-444C-9A19-5A1F98EAFB35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70376231-D26F-4592-B079-805BC5252438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70376231-D26F-4592-B079-805BC5252438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70376231-D26F-4592-B079-805BC5252438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70376231-D26F-4592-B079-805BC5252438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
