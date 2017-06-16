@@ -1,8 +1,9 @@
 ﻿using NSubstitute;
+using XGain.Messages;
 using XGain.Sockets;
 using Xunit;
 
-namespace XGain.Tests.EventArgs
+namespace XGain.Tests.Messages
 {
     public class MessageArgsTests
     {

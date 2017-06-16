@@ -1,7 +1,7 @@
 ﻿using System;
 using XGain.Sockets;
 
-namespace XGain
+namespace XGain.Messages
 {
     public class MessageArgs : EventArgs
     {

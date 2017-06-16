@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace XGain
+namespace XGain.Messages
 {
     public class StartArgs : EventArgs
     {

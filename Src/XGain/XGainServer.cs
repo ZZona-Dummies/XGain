@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using XGain.Messages;
 using XGain.Processing;
 using XGain.Sockets;
 

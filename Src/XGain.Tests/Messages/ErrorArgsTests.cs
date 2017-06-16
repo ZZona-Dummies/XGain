@@ -1,7 +1,8 @@
 ﻿using System;
+using XGain.Messages;
 using Xunit;
 
-namespace XGain.Tests.EventArgs
+namespace XGain.Tests.Messages
 {
     public class ErrorArgsTests
     {

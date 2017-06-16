@@ -1,8 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
+using XGain.Messages;
 using Xunit;
 
-namespace XGain.Tests.EventArgs
+namespace XGain.Tests.Messages
 {
     public class StartArgsTests
     {

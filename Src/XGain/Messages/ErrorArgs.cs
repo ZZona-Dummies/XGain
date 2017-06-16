@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XGain
+namespace XGain.Messages
 {
     public class ErrorArgs : EventArgs
     {
