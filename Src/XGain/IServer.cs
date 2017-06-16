@@ -9,7 +9,7 @@ namespace XGain
         event EventHandler<MessageArgs> OnNewMessage;
         event EventHandler<ErrorArgs> OnError;
 
-        void Start(int? maxDegreeOfParallelism = null);
+        void Start();
         void Stop();
     }
 }

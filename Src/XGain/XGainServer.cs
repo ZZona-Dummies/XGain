@@ -4,7 +4,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using XGain.Messages;
-using XGain.Processing;
 using XGain.Sockets;
 
 namespace XGain
@@ -16,17 +15,16 @@ namespace XGain
         public event EventHandler<ErrorArgs> OnError;
 
         private readonly TcpListener _listener;
-        private readonly IProcessor<MessageArgs> _processor;
+        private readonly SocketProcessor _processor = new SocketProcessor();
 
         private readonly CancellationTokenSource _cancel = new CancellationTokenSource();
 
-        public XGainServer(IPAddress ipAddress, int port, IProcessor<MessageArgs> processor)
+        public XGainServer(IPAddress ipAddress, int port)
         {
             _listener = new TcpListener(ipAddress, port);
-            _processor = processor;
         }
 
-        public void Start(int? maxDegreeOfParallelism = null)
+        public void Start()
         {
             _listener.Start();
             RaiseOnStartEvent();
@@ -43,11 +41,10 @@ namespace XGain
                     try
                     {
                         Socket socket = await _listener.AcceptSocketAsync();
-                        Task.Run(() =>
-                        {
-                            ISocket request = new XGainSocket(socket);
-                            ProcessSocketConnection(request);
-                        }, token);
+
+                        ISocket request = new XGainSocket(socket);
+                        await ProcessSocketConnection(request);
+
                     }
                     catch (Exception ex)
                     {
@@ -75,10 +72,10 @@ namespace XGain
             Stop();
         }
 
-        private async void ProcessSocketConnection(ISocket socket)
+        private async Task ProcessSocketConnection(ISocket socket)
         {
-            MessageArgs args = await _processor.ProcessSocketConnectionAsync(socket);
-            RaiseOnNewMessageEvent(socket, args);
+            var request = await _processor.ReceiveAsync(socket.InternalSocket);
+            RaiseOnNewMessageEvent(socket, new MessageArgs(socket, request));
         }
 
         private void RaiseOnStartEvent()
