@@ -4,7 +4,7 @@
     <Description>XGain - TCP/IP server based on the top of TcpListener</Description>
     <Copyright>Lukasz Pyrzyk</Copyright>
     <VersionPrefix>1.2.7-rc</VersionPrefix>
-    <Authors>Lukasz Pyrzyk</Authors>
+    <Authors>Łukasz Pyrzyk</Authors>
     <TargetFrameworks>netstandard1.3;net461</TargetFrameworks>
     <AssemblyName>XGain</AssemblyName>
     <PackageId>XGain</PackageId>
@@ -20,6 +20,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <Version>1.2.8</Version>
+    <RepositoryUrl>https://github.com/lukasz-pyrzyk/XGain</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
