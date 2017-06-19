@@ -1,19 +1,17 @@
-# entry folder
-$src = ".\Src\"
-
 # test projects to run with OpenCover
 $projects = @(
-    "Src\XGain.Tests\"
+    ".\Src\XGain.Tests\XGain.Tests.csproj"
 );
 
 # 
 function RunTests($path){
+    Write-Host $path
     dotnet test $path -c Release
 }
 
 # run unit tests and calculate code coverage for each test project
 foreach ($project in $projects) {
-    RunTests $($src + $project.Path) $project.Filter
+    RunTests $($project)
 }
 
 # Set build as failed if any error occurred
