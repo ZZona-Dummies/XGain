@@ -1,17 +1,14 @@
-param (
-    [Parameter(Mandatory=$true)][string]$version = 0
- )
-
-
 # projects to build
 $projects = @(
     "Src\XGain",
-    "Src\XGain.Tests\"
+    "Src\XGain.Tests\",
+    "Sample\SampleClient",
+    "Sample\SampleServer"
 );
 
 # build function for project
 function Build($path){
-    dotnet build $path -c Release --version-suffix $version --no-incremental;
+    dotnet build $path -c Release
 }
 
 function RestorePackages(){
@@ -26,7 +23,7 @@ RestorePackages;
 
 # build each project
 foreach ($project in $projects){
-    write-host "Building " $project "with suffix version " $version
+    write-host "Building " $project
     Build($project);
 }
 
