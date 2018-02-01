@@ -1,6 +1,6 @@
 ﻿namespace XGain.Tests
 {
-    class XGainClientTests
+    internal class XGainClientTests
     {
     }
 }

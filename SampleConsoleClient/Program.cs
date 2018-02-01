@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XGain;
 
-namespace SampleClient
+namespace SampleConsoleClient
 {
     internal class Program
     {

@@ -11,7 +11,9 @@ namespace XGain
     public class XGainServer : IServer
     {
         public event EventHandler<StartArgs> OnStart;
+
         public event EventHandler<MessageArgs> OnNewMessage;
+
         public event EventHandler<ErrorArgs> OnError;
 
         private readonly TcpListener _listener;
@@ -44,7 +46,6 @@ namespace XGain
 
                         ISocket request = new XGainSocket(socket);
                         await ProcessSocketConnection(request);
-
                     }
                     catch (Exception ex)
                     {

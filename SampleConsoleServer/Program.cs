@@ -4,7 +4,7 @@ using System.Threading;
 using XGain;
 using XGain.Messages;
 
-namespace SampleServer
+namespace SampleConsoleServer
 {
     internal class Program
     {

@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using BenchmarkDotNet.Attributes;
+using System.Net;
 using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
 using XGain;
 
 namespace Benchmark
