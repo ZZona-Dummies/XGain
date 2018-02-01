@@ -22,13 +22,14 @@ namespace XGain
             await ReceiveAllAsync(socket, sizeBytes, sizeBytes.Length).ConfigureAwait(false);
             int packageSize = BitConverter.ToInt32(sizeBytes, 0);
 
-            if (requestBytes == null)
-                requestBytes = new byte[packageSize];
-            else
+            //Array resize is a expensive method, we will create a new instance for each new receive, GC will destroy this at the end of the func
+            //if (requestBytes == null)
+            requestBytes = new byte[packageSize];
+            /*else
             {
                 if (packageSize != requestBytes.Length)
                     Array.Resize(ref requestBytes, packageSize);
-            }
+            }*/
 
             await ReceiveAllAsync(socket, requestBytes, packageSize).ConfigureAwait(false);
 
