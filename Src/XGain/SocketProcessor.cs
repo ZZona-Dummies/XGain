@@ -7,6 +7,9 @@ namespace XGain
 {
     public class SocketProcessor
     {
+        private byte[] sizeBytes = new byte[sizeof(int)],
+                       requestBytes;
+
         public async Task SendAsync(Socket server, byte[] data)
         {
             var sizeBytes = BitConverter.GetBytes(data.Length);
@@ -16,11 +19,16 @@ namespace XGain
 
         public async Task<byte[]> ReceiveAsync(Socket socket)
         {
-            var sizeBytes = new byte[sizeof(int)];
             await ReceiveAllAsync(socket, sizeBytes, sizeBytes.Length).ConfigureAwait(false);
             int packageSize = BitConverter.ToInt32(sizeBytes, 0);
 
-            byte[] requestBytes = new byte[packageSize];
+            if (requestBytes == null)
+                requestBytes = new byte[packageSize];
+            else
+            {
+                if (packageSize != requestBytes.Length)
+                    Array.Resize(ref requestBytes, packageSize);
+            }
 
             await ReceiveAllAsync(socket, requestBytes, packageSize).ConfigureAwait(false);
 
